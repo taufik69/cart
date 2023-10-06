@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineArrowLeft,
   AiOutlineMinus,
@@ -9,6 +9,12 @@ import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
 import demo from "../assets/demo.jpg";
 const Cart = () => {
+  const [product, setproduct] = useState([]);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products/")
+      .then((res) => res.json())
+      .then((Allproduct) => setproduct(Allproduct));
+  }, []);
   return (
     <>
       <div>
@@ -29,32 +35,38 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            <div className={styles.cart_item}>
-              <div>
-                <picture>
-                  <img src={demo} alt={demo} className={styles.img} />
-                </picture>
-              </div>
+            {product.map((items) => (
+              <div className={styles.cart_item}>
+                <div>
+                  <picture>
+                    <img
+                      src={items.image}
+                      alt={items.image}
+                      className={styles.img}
+                    />
+                  </picture>
+                </div>
 
-              <div className="">
-                <h2>Samsung S21 ultra</h2>
-                <p>Black Color</p>
-              </div>
+                <div className="">
+                  <h2>{items.description.slice(0, 18)}</h2>
+                  <p>{items.category}</p>
+                </div>
 
-              <div className={styles.shopping_head}>
-                <AiOutlineMinus className={styles.remove_btn} />
-                <p className={styles.cart_total}>4</p>
-                <AiOutlinePlus className={styles.remove_btn} />
-              </div>
+                <div className={styles.shopping_head}>
+                  <AiOutlineMinus className={styles.remove_btn} />
+                  <p className={styles.cart_total}>{items.price.toString().slice(0,1)}</p>
+                  <AiOutlinePlus className={styles.remove_btn} />
+                </div>
 
-              <div className="img">
-                <p className={styles.remove_btn}>50000Tk</p>
-              </div>
+                <div className="img">
+                  <p className={styles.remove_btn}>{items.price}</p>
+                </div>
 
-              <div className={styles.remove_btn}>
-                <AiOutlineCloseCircle />
+                <div className={styles.remove_btn}>
+                  <AiOutlineCloseCircle />
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

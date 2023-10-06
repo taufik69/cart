@@ -64,9 +64,10 @@
 }
 .img {
   width: 200px;
-  height: 100px;
+  height: 150px;
   border-radius: 10px;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .cart_item {
