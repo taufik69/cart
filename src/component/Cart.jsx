@@ -55,8 +55,12 @@ const Cart = () => {
                 <AiOutlineCloseCircle />
               </div>
             </div>
-
           </div>
+        </div>
+
+        <div className={styles.total_amount}>
+          <p className={styles.subtotalAmount}>8000Tk</p>
+          <button className={styles.button}>Checkout</button>
         </div>
       </div>
     </>
