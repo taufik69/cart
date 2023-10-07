@@ -8,11 +8,9 @@ import {
 import { cartContext } from "./Cart";
 const CartItem = () => {
   const context = useContext(cartContext);
-  console.log(context);
-  const { description, image, category, price, id } = context;
-
+  
   return context.map((items) => (
-    <div key={id}>
+    <div key={items.id}>
       <div className={styles.cart_item}>
         <div>
           <picture>

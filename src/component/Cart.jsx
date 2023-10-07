@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext ,useReducer} from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
@@ -6,8 +6,15 @@ import CartItem from "./CartItem";
 
 export const cartContext = createContext();
 
+
 const Cart = () => {
   const [product, setproduct] = useState([]);
+  const initaialState = {
+    item:product,
+    total_amount:0,
+    total_item : 0
+  }
+  const [state, dispatch] = useReducer(reducer , initaialState)
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/")
       .then((res) => res.json())
