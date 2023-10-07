@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import {
-  AiOutlineArrowLeft,
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiOutlineCloseCircle,
-} from "react-icons/ai";
+import React, { useEffect, useState, createContext } from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
-import demo from "../assets/demo.jpg";
+import CartItem from "./CartItem";
+
+export const cartContext = createContext();
+
 const Cart = () => {
   const [product, setproduct] = useState([]);
   useEffect(() => {
@@ -35,38 +33,11 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            {product.map((items) => (
-              <div className={styles.cart_item}>
-                <div>
-                  <picture>
-                    <img
-                      src={items.image}
-                      alt={items.image}
-                      className={styles.img}
-                    />
-                  </picture>
-                </div>
-
-                <div className="">
-                  <h2>{items.description.slice(0, 18)}</h2>
-                  <p>{items.category}</p>
-                </div>
-
-                <div className={styles.shopping_head}>
-                  <AiOutlineMinus className={styles.remove_btn} />
-                  <p className={styles.cart_total}>{items.price.toString().slice(0,1)}</p>
-                  <AiOutlinePlus className={styles.remove_btn} />
-                </div>
-
-                <div className="img">
-                  <p className={styles.remove_btn}>{items.price}</p>
-                </div>
-
-                <div className={styles.remove_btn}>
-                  <AiOutlineCloseCircle />
-                </div>
-              </div>
-            ))}
+            
+              <cartContext.Provider value={product}>
+                <CartItem />
+              </cartContext.Provider>
+            
           </div>
         </div>
 
