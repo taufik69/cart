@@ -1,3 +1,4 @@
-export const reducer = (state, action) => {
+function reducer(state, action) {
   return state;
-};
+}
+export default reducer;

@@ -1,23 +1,23 @@
-import React, { useEffect, createContext, useReducer } from "react";
+import React, { useEffect, createContext, useReducer, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
 import CartItem from "./CartItem.jsx";
-import { reducer } from "./reducer.jsx";
+import reducer from "./reducer.jsx";
 export const cartContext = createContext();
 import ProductData from "./ProductData";
 
+const initialState = {
+  total_amount: 0,
+  total_item: 0,
+};
+
 const Cart = () => {
-  const product = ProductData();
-  const initialState = {
-    item: product,
-    total_amount: 0,
-    total_item: 0,
-  };
+  var product = ProductData();
+  initialState["product"] = product;
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log(state.item);
   return (
     <>
       <div>
@@ -37,11 +37,11 @@ const Cart = () => {
             <p>You have 4 items in shopping cart</p>
           </div>
 
-          {/* <div className={styles.main_cart_item}>
-            <cartContext.Provider value={product_data_from_localStroage}>
+          <div className={styles.main_cart_item}>
+            <cartContext.Provider value={state.product}>
               <CartItem />
             </cartContext.Provider>
-          </div> */}
+          </div>
         </div>
 
         <div className={styles.total_amount}>
