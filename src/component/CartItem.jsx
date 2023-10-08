@@ -7,8 +7,8 @@ import {
 } from "react-icons/ai";
 import { cartContext } from "./Cart";
 const CartItem = () => {
-  const context = useContext(cartContext);
-  
+  const  context  = useContext(cartContext);
+
   return context.map((items) => (
     <div key={items.id}>
       <div className={styles.cart_item}>
@@ -19,7 +19,7 @@ const CartItem = () => {
         </div>
 
         <div className="">
-          <h2>{items.description.substring(0,30)}....</h2>
+          <h2>{items.description.substring(0, 30)}....</h2>
           <p>{items.category}</p>
         </div>
 
@@ -29,7 +29,7 @@ const CartItem = () => {
           <AiOutlinePlus className={styles.remove_btn} />
         </div>
 
-        <div >
+        <div>
           <p className={styles.remove_btn}>{items.price}</p>
         </div>
 

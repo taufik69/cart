@@ -1,25 +1,23 @@
-import React, { useEffect, useState, createContext ,useReducer} from "react";
+import React, { useEffect, createContext, useReducer } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
-import CartItem from "./CartItem";
-
+import CartItem from "./CartItem.jsx";
+import { reducer } from "./reducer.jsx";
 export const cartContext = createContext();
-
+import ProductData from "./ProductData";
 
 const Cart = () => {
-  const [product, setproduct] = useState([]);
-  const initaialState = {
-    item:product,
-    total_amount:0,
-    total_item : 0
-  }
-  const [state, dispatch] = useReducer(reducer , initaialState)
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((res) => res.json())
-      .then((Allproduct) => setproduct(Allproduct));
-  }, []);
+  const product = ProductData();
+  const initialState = {
+    item: product,
+    total_amount: 0,
+    total_item: 0,
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log(state.item);
   return (
     <>
       <div>
@@ -39,13 +37,11 @@ const Cart = () => {
             <p>You have 4 items in shopping cart</p>
           </div>
 
-          <div className={styles.main_cart_item}>
-            
-              <cartContext.Provider value={product}>
-                <CartItem />
-              </cartContext.Provider>
-            
-          </div>
+          {/* <div className={styles.main_cart_item}>
+            <cartContext.Provider value={product_data_from_localStroage}>
+              <CartItem />
+            </cartContext.Provider>
+          </div> */}
         </div>
 
         <div className={styles.total_amount}>

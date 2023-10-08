@@ -1,4 +1,3 @@
-
-export const reducer = (state , action)=> {
-  console.log("hello motherfucker ")
-}
+export const reducer = (state, action) => {
+  return state;
+};
