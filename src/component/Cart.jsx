@@ -4,8 +4,9 @@ import { BsCart3 } from "react-icons/bs";
 import styles from "../component/Cart.module.css";
 import CartItem from "./CartItem.jsx";
 import reducer from "./reducer.jsx";
-export const cartContext = createContext();
 import ProductData from "./ProductData";
+
+export const cartContext = createContext();
 
 const initialState = {
   total_amount: 0,
@@ -15,8 +16,15 @@ const initialState = {
 const Cart = () => {
   var product = ProductData();
   initialState["product"] = product;
-
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Cart remove button funtionality start . get a item id
+  const HandleRemove = (itemId) => {
+    dispatch({
+      type: "REMOVE",
+      payload: itemId,
+    });
+  };
 
   return (
     <>
@@ -38,7 +46,7 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            <cartContext.Provider value={state.product}>
+            <cartContext.Provider value={{ ...state, HandleRemove }}>
               <CartItem />
             </cartContext.Provider>
           </div>
