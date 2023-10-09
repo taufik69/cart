@@ -32,8 +32,33 @@ function reducer(state, action) {
   if (action.type === "clear_Cart") {
     return {
       ...state,
-      product:[]
-    }
+      product: [],
+    };
+  }
+
+  /**
+   * todo : this reducer funtion is work for increment item in state
+   *
+   */
+
+  if (action.type === "INCREMENT") {
+    let producttotal = state.product.map((currentEle) => {
+      if (currentEle.id === action.payload) {
+        console.log("from reducer function", currentEle);
+      }
+    });
+    console.log(producttotal);
+  }
+
+  /**
+   * todo : decrement reducer function takes a type of action and decrements the total items
+   */
+
+  if (action.type === "DECREMENT") {
+    return {
+      ...state,
+      total_item: state.total_item >= 0 ? state.total_item-- : 0,
+    };
   }
 }
 export default reducer;

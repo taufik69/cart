@@ -26,12 +26,37 @@ const Cart = () => {
     });
   };
 
+  /**
+   *
+   * @function  for increment state
+   */
+
+  const increment = (productId) => {
+    
+    return dispatch({
+      type:"INCREMENT",
+      payload : productId,
+    })
+  };
+
   // Handle decrement function funtionality below here
-  const Handle_clear_cart = () => {
+  const Handle_clear_cart = (productPrice) => {
     return dispatch({
       type: "clear_Cart",
+      
     });
   };
+
+  /**
+   * todo : HandleDecrement fucntion produce a decrement items 
+   */
+
+  const HandleDecrement = (productPriceForIncre)=> {
+    return dispatch({
+      type:"DECREMENT",
+      payload: productPriceForIncre,
+    })
+  }
   return (
     <>
       <div>
@@ -52,9 +77,7 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            <cartContext.Provider
-              value={{ ...state, HandleRemove }}
-            >
+            <cartContext.Provider value={{ ...state, HandleRemove ,increment ,HandleDecrement}}>
               <CartItem />
             </cartContext.Provider>
           </div>
@@ -64,7 +87,6 @@ const Cart = () => {
           <p className={styles.subtotalAmount}>8000Tk</p>
           <button className={styles.button}>Checkout</button>
         </div>
-
 
         <div className={styles.total_amount} onClick={Handle_clear_cart}>
           <button className={styles.button}>Clear Cart</button>
