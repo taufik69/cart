@@ -17,13 +17,23 @@ function reducer(state, action) {
    **/
 
   if (action.type === "REMOVE") {
-    const test = {
+    return {
       ...state,
       product: state.product.filter((currentElement) => {
-        return currentElement !== action.payload;
+        let filterResult = currentElement.id !== action.payload;
+        return filterResult;
       }),
     };
-    console.log(test.product);
+  }
+
+  /**
+   * todo this reducer function work for deccrements items
+   */
+  if (action.type === "clear_Cart") {
+    return {
+      ...state,
+      product:[]
+    }
   }
 }
 export default reducer;

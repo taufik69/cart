@@ -26,6 +26,12 @@ const Cart = () => {
     });
   };
 
+  // Handle decrement function funtionality below here
+  const Handle_clear_cart = () => {
+    return dispatch({
+      type: "clear_Cart",
+    });
+  };
   return (
     <>
       <div>
@@ -46,7 +52,9 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            <cartContext.Provider value={{ ...state, HandleRemove }}>
+            <cartContext.Provider
+              value={{ ...state, HandleRemove }}
+            >
               <CartItem />
             </cartContext.Provider>
           </div>
@@ -55,6 +63,11 @@ const Cart = () => {
         <div className={styles.total_amount}>
           <p className={styles.subtotalAmount}>8000Tk</p>
           <button className={styles.button}>Checkout</button>
+        </div>
+
+
+        <div className={styles.total_amount} onClick={Handle_clear_cart}>
+          <button className={styles.button}>Clear Cart</button>
         </div>
       </div>
     </>

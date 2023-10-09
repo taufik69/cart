@@ -9,8 +9,8 @@ import { cartContext } from "./Cart";
 
 const CartItem = () => {
   const context = useContext(cartContext);
-  const { product, total_amount, total_item, HandleRemove } = context;
-  // console.log(context);
+  const { product, total_amount, total_item, HandleRemove } =
+    context;
 
   return product.map((items) => (
     <div key={items.id}>
@@ -25,8 +25,11 @@ const CartItem = () => {
           <p>{items.category}</p>
         </div>
         <div className={styles.shopping_head}>
-          <AiOutlineMinus className={styles.remove_btn} />
-          <p className={styles.cart_total}>{items.price}</p>
+          <AiOutlineMinus
+            className={styles.remove_btn}
+            
+          />
+          <p className={styles.cart_total}>{total_item}</p>
           <AiOutlinePlus className={styles.remove_btn} />
         </div>
         <div>
