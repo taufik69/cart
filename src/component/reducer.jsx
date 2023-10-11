@@ -42,12 +42,19 @@ function reducer(state, action) {
    */
 
   if (action.type === "INCREMENT") {
-    let producttotal = state.product.map((currentEle) => {
-      if (currentEle.id === action.payload) {
-        console.log("from reducer function", currentEle);
-      }
-    });
-    console.log(producttotal);
+    return {
+      ...state,
+      product: state.product.map((currentElement) => {
+        if (currentElement.id === action.payload) {
+          return {
+            ...state,
+            total_item: total_item++,
+          };
+          
+        }
+      }),
+      total_item: state.total_item++,
+    };
   }
 
   /**

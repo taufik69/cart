@@ -32,31 +32,31 @@ const Cart = () => {
    */
 
   const increment = (productId) => {
-    
+    console.log;
     return dispatch({
-      type:"INCREMENT",
-      payload : productId,
-    })
+      type: "INCREMENT",
+      payload: productId,
+    });
   };
 
   // Handle decrement function funtionality below here
   const Handle_clear_cart = (productPrice) => {
     return dispatch({
       type: "clear_Cart",
-      
     });
   };
 
   /**
-   * todo : HandleDecrement fucntion produce a decrement items 
+   * todo : HandleDecrement fucntion produce a decrement items
    */
 
-  const HandleDecrement = (productPriceForIncre)=> {
+  const HandleDecrement = (productPriceForIncre) => {
     return dispatch({
-      type:"DECREMENT",
+      type: "DECREMENT",
       payload: productPriceForIncre,
-    })
-  }
+    });
+  };
+
   return (
     <>
       <div>
@@ -77,7 +77,9 @@ const Cart = () => {
           </div>
 
           <div className={styles.main_cart_item}>
-            <cartContext.Provider value={{ ...state, HandleRemove ,increment ,HandleDecrement}}>
+            <cartContext.Provider
+              value={{ ...state, HandleRemove, increment, HandleDecrement }}
+            >
               <CartItem />
             </cartContext.Provider>
           </div>
